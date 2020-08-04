@@ -1,11 +1,13 @@
 import React from 'react';
-import{View,Text} from 'react-native';
+import{SafeAreaView,Text} from 'react-native';
+import { color } from "../../utility";
 
-const Login=()=>{
+
+const Login=({navigation})=>{
     return(
-        <View>
-            <Text>Login</Text>
-        </View>
+        <SafeAreaView>
+            <Text onPress={() => navigation.navigate('SignUp')}>Login</Text>
+        </SafeAreaView>
     );
 };
 
