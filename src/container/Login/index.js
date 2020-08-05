@@ -14,7 +14,15 @@ const {email,password} = credentials;
 
 
 const onLoginPress = () => {
-    alert(JSON.stringify(credentials));
+    if(!email){
+      alert('Email is required');
+    }else if(!password){
+        alert('Password is required');
+
+    }else{
+        alert(JSON.stringify(credentials));
+    }
+    
 
 };
 
