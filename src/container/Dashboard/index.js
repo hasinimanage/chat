@@ -138,12 +138,12 @@ const { profileImg, name } = userDetail;
                     type: LOADING_STOP,
                   });
                 })
-                // .catch(() => {
-                //   alert(err);
-                //   dispatchLoaderAction({
-                //     type: LOADING_STOP,
-                //   });
-                // });
+                .catch(() => {
+                  alert(err);
+                  dispatchLoaderAction({
+                    type: LOADING_STOP,
+                  });
+                });
             }
           });
         };
@@ -161,7 +161,26 @@ const { profileImg, name } = userDetail;
             .catch((err)=>alert(err));
         })
         .catch((err)=>alert(err));
+    };
+
+    // * ON NAME TAP
+  const nameTap = (profileImg, name, guestUserId) => {
+    if (!profileImg) {
+      navigation.navigate("Chat", {
+        name,
+        imgText: name.charAt(0),
+        guestUserId,
+        currentUserId: uuid,
+      });
+    } else {
+      navigation.navigate("Chat", {
+        name,
+        img: profileImg,
+        guestUserId,
+        currentUserId: uuid,
+      });
     }
+  };
 
 
 
@@ -175,7 +194,11 @@ const { profileImg, name } = userDetail;
             onEditImgTap={()=>selectPhotoTapped()}
             />}
             renderItem ={({item})=>(
-                <ShowUsers name={item.name} img={item.profileImg}/>
+                <ShowUsers 
+                name={item.name} 
+                img={item.profileImg}
+                onNameTap={()=>nameTap(item.profileImg,item.name,item.id)}
+                />
             )}
     
             />
