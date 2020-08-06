@@ -1,12 +1,22 @@
 import React, { useState, useContext } from 'react';
-import{SafeAreaView,Text,View} from 'react-native';
+import{
+    SafeAreaView,
+    Text,
+    View,
+    KeyboardAvoidingView,
+    TouchableWithoutFeedback,
+    Keyboard,
+    Platform,
+} from 'react-native';
+("react-native-keyboard-aware-scroll-view");
+
 import {globalStyle,color} from '../../utility';
 import {Logo,InputField,RoundCornerButton} from '../../component';
 import {Store} from '../../context/store';
 import { LOADING_START, LOADING_STOP } from '../../context/actions/type';
 import { LoginRequest } from '../../network';
 import { setAsyncStorage, keys } from '../../asyncStorage';
-import { setUniqueValue } from '../../utility/constants';
+import { setUniqueValue,keyboardVerticalOffset} from '../../utility/constants';
 import firebase from '../../firebase/config';
 
 
@@ -67,6 +77,11 @@ const handleOnChange = (name, value) => {
     });
   };
     return(
+        <KeyboardAvoidingView
+        style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}
+        behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+        keyboardVerticalOffset={keyboardVerticalOffset}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}>
         
             <View style={[globalStyle.containerCentered]}>
@@ -103,6 +118,9 @@ const handleOnChange = (name, value) => {
             </View>
         
         </SafeAreaView>
+        </TouchableWithoutFeedback>
+
+        </KeyboardAvoidingView>
     );
 };
 
