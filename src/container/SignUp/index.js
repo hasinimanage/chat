@@ -1,5 +1,5 @@
 import React, { useState,useContext } from 'react';
-import{SafeAreaView,Text,View} from 'react-native';
+import{SafeAreaView,Text,View,KeyboardAvoidingView,TouchableWithoutFeedback,Platform} from 'react-native';
 import {globalStyle,color} from '../../utility';
 import {Logo,InputField,RoundCornerButton} from '../../component';
 import {Store} from '../../context/store';
@@ -7,7 +7,7 @@ import { LOADING_START, LOADING_STOP } from '../../context/actions/type';
 import { SignUpRequest, AddUser } from '../../network';
 import {setAsyncStorage} from '../../asyncStorage'
 import { keys } from '../../asyncStorage';
-import { setUniqueValue } from '../../utility/constants';
+import { setUniqueValue,keyboardVerticalOffset } from '../../utility/constants';
 import firebase from '../../firebase/config';
 
 
@@ -88,30 +88,62 @@ const handleOnChange = (name, value) => {
       [name]: value,
     });
   };
-    return(
-        <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}>
-        
-            <View style={[globalStyle.containerCentered]}>
-              <Logo />
-            </View>
 
+  // * ON INPUT FOCUS
+
+  const handleFocus = () => {
+    setTimeout(() => {
+      toggleLogo(false);
+    }, 200);
+  };
+  // * ON INPUT BLUR
+
+  const handleBlur = () => {
+    setTimeout(() => {
+      toggleLogo(true);
+    }, 200);
+  };
+    return(
+        <KeyboardAvoidingView
+        style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}
+        behavior={Platform.OS === 'ios' ? 'padding': 'height'}
+        keyboardVerticalOffset={keyboardVerticalOffset}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}>
+          {
+              showLogo &&(
+                <View style={[globalStyle.containerCentered]}>
+                <Logo />
+              </View>
+              )
+          }
+        
+            
             <View style={[globalStyle.flex2, globalStyle.sectionCentered]}>
                <InputField placeholder="Enter name" value={name}
                  onChangeText={(text)=>handleOnChange('name',text)}
+                 onFocus={() => handleFocus()}
+                 onBlur={() => handleBlur()}
 
                  />
                  <InputField placeholder="Enter email" value={email}
                  onChangeText={(text)=>handleOnChange('email',text)}
+                 onFocus={() => handleFocus()}
+                 onBlur={() => handleBlur()}
 
                  />
                  <InputField placeholder="Enter password" secureTextEntry={true}
                  value={password}
                  onChangeText={(text)=>handleOnChange('password',text)}
+                 onFocus={() => handleFocus()}
+                 onBlur={() => handleBlur()}
 
                  />
                  <InputField placeholder="Confirm password" secureTextEntry={true}
                  value={confirmPassword}
                  onChangeText={(text)=>handleOnChange('confirmPassword',text)}
+                 onFocus={() => handleFocus()}
+                 onBlur={() => handleBlur()}
 
                  />
                  
@@ -135,6 +167,8 @@ const handleOnChange = (name, value) => {
             </View>
         
         </SafeAreaView>
+        </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     );
 };
 

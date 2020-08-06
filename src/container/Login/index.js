@@ -24,6 +24,7 @@ const Login=({navigation})=>{
 
 const globalState = useContext(Store);
 const {dispatchLoaderAction} = globalState;
+const [showLogo, toggleLogo] = useState(true);
 
 const [credentials,setCredentials] =useState({
     email:"",
@@ -76,6 +77,21 @@ const handleOnChange = (name, value) => {
       [name]: value,
     });
   };
+
+  //* on focus input
+
+  const handleFocus=()=>{
+    setTimeout( ()=>{
+        toggleLogo(false);
+    }, 200);
+  };
+  // * on blur input
+  const handleBlur=()=>{
+    setTimeout( ()=>{
+        toggleLogo(true);
+    }, 200);
+  };
+
     return(
         <KeyboardAvoidingView
         style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}
@@ -83,19 +99,28 @@ const handleOnChange = (name, value) => {
         keyboardVerticalOffset={keyboardVerticalOffset}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView style={[globalStyle.flex1, {backgroundColor:color.BLACK}]}>
-        
-            <View style={[globalStyle.containerCentered]}>
+            {
+                showLogo && (
+                    <View style={[globalStyle.containerCentered]}>
               <Logo />
             </View>
+                )
+            }
+        
+            
 
             <View style={[globalStyle.flex2, globalStyle.sectionCentered]}>
                  <InputField placeholder="Enter email" value={email}
                  onChangeText={(text)=>handleOnChange('email',text)}
+                 onFocus ={() => handleFocus()}
+                 onBlur ={() => handleBlur()}
 
                  />
                  <InputField placeholder="Enter password" secureTextEntry={true}
                  value={password}
                  onChangeText={(text)=>handleOnChange('password',text)}
+                 onFocus ={() => handleFocus()}
+                 onBlur ={() => handleBlur()}
 
                  />
                  <RoundCornerButton title="Login" onPress={() => onLoginPress()} />
