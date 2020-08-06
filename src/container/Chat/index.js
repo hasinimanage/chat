@@ -1,13 +1,14 @@
-import React, {useLayoutEffect,useState} from 'react';
+import React, {useLayoutEffect,useState,useEffect} from 'react';
 import {View,Text,SafeAreaView,FlatList} from 'react-native';
 import { color, globalStyle,appStyle } from '../../utility';
 import styles from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import{InputField,ChatBox} from '../../component'
+import{InputField,ChatBox} from '../../component';
+import firebase from '../../firebase/config';
 
 const Chat = ({route,navigation}) => {
     const{params}=route;
-    const {name,img,imgText,guessUserId,currentUserId}=params;
+    const {name,img,imgText,guestUserId,currentUserId}=params;
     const [msgValue, setMsgValue] = useState('');
     const [messeges, setMesseges] = useState([]);
     useLayoutEffect(() => {
@@ -16,11 +17,35 @@ const Chat = ({route,navigation}) => {
             
         });
     },[navigation]);
+    useEffect(() => {
+        try {
+          firebase
+            .database()
+            .ref("messeges")
+            .child(currentUserId)
+            .child(guestUserId)
+            .on("value", (dataSnapshot) => {
+              let msgs = [];
+              dataSnapshot.forEach((child) => {
+                msgs.push({
+                  sendBy: child.val().messege.sender,
+                  recievedBy: child.val().messege.reciever,
+                  msg: child.val().messege.msg,
+                  img: child.val().messege.img,
+                });
+              });
+              setMesseges(msgs.reverse());
+            });
+        } catch (error) {
+          alert(error);
+        }
+      }, []);
+
     return(
         <SafeAreaView style={[globalStyle.flex1,{backgroundColor:color.BLACK}]}> 
          <FlatList
            inverted
-           data={[1,2,3]}
+           data={messeges}
            keyExtractor ={(_, index)=> index.toString()}
            renderItem={(item)=>(
             <ChatBox
