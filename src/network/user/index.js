@@ -2,7 +2,7 @@ import firebase from '../../firebase/config';
 
  export const AddUser =async(name,email,uid,profileImg) => {
     try {
-        const userName = email.toString().substring(0,email.indexOf('@'));
+        //const userName = email.toString().substring(0,email.indexOf('@'));
         return await firebase
         .database()
         .ref('users/'+uid)
