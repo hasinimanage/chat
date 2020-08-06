@@ -10,7 +10,7 @@ function NavContainer() {
     return(
         <NavigationContainer>
             <Stack.Navigator
-             initialRouteName="Splash"
+             initialRouteName="Login"
              screenOptions={{
                  headerShown:{backgroundColor:color.DARK_GRAY},
                  headerTintColor:color.WHITE,
