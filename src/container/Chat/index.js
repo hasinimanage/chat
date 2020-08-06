@@ -5,6 +5,8 @@ import styles from './styles';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import{InputField,ChatBox} from '../../component';
 import firebase from '../../firebase/config';
+import ImagePicker from "react-native-image-picker";
+
 
 const Chat = ({route,navigation}) => {
     const{params}=route;
@@ -40,6 +42,40 @@ const Chat = ({route,navigation}) => {
           alert(error);
         }
       }, []);
+
+      const handleCamera = () => {
+        const option = {
+          storageOptions: {
+            skipBackup: true,
+          },
+        };
+    
+        ImagePicker.showImagePicker(option, (response) => {
+          if (response.didCancel) {
+            console.log("User cancel image picker");
+          } else if (response.error) {
+            console.log(" image picker error", response.error);
+          } else {
+            // Base 64
+            let source = "data:image/jpeg;base64," + response.data;
+    
+            // senderMsg(msgValue, currentUserId, guestUserId, source)
+            //   .then(() => {})
+            //   .catch((err) => alert(err));
+    
+            // // * guest user
+    
+            // recieverMsg(msgValue, currentUserId, guestUserId, source)
+            //   .then(() => {})
+            //   .catch((err) => alert(err));
+          }
+        });
+      };
+    
+
+      const handleOnChange = (text) => {
+        setMsgValue(text);
+      };
 
     return(
         <SafeAreaView style={[globalStyle.flex1,{backgroundColor:color.BLACK}]}> 
