@@ -45,6 +45,7 @@ const onSignUpPress = () => {
         });
         SignUpRequest(email,password)
         .then(() => {
+            //console.log("firebase auth"+firebase.auth())
             let uid = firebase.auth().currentUser.uid;
             let profileImg='';
             AddUser(name,email,uid,profileImg)
