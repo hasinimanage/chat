@@ -19,3 +19,16 @@ import firebase from '../../firebase/config';
     }
 };
 
+export const UpdateUser = async (uuid,imgSource) => {
+    try{
+        return await firebase
+        .database()
+        .ref('users/'+uuid)
+        .update({
+            profileImg:imgSource,
+        });
+    } catch(error){
+        return error;
+    }
+};
+
