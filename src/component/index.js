@@ -5,7 +5,7 @@ import Loader from "./loader";
  import Profile from "./profile";
 import ShowUsers from "./showUsers";
 // import StickyHeader from "./stickyHeader";
-// import ChatBox from "./chatBox";
+import ChatBox from "./chatbox";
 // import FieldInput from "./fieldInput";
 
 export {
@@ -16,6 +16,6 @@ export {
   Profile,
   ShowUsers,
 //   StickyHeader,
-//   ChatBox,
+ ChatBox,
 //   FieldInput,
 };
