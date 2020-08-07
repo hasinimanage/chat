@@ -8,7 +8,7 @@ const getDimensions = () => {
       height: 150,
       width: 150,
       borderRadius: 50,
-      logoFontSize: 90,
+      logoFontSize: 40,
     };
   } else {
     return {

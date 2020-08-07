@@ -14,6 +14,6 @@ import styles from './styles';
 
 export default ({logoStyle, logoTextStyle}) => (
   <View style={[styles.logo, logoStyle]}>
-    <Text style={[styles.text, logoTextStyle]}>H</Text>
+    <Text style={[styles.text, logoTextStyle]}>Vtalk </Text>
   </View>
 );
