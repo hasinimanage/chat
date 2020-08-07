@@ -46,6 +46,7 @@ const Chat = ({ route, navigation }) => {
         });
     } catch (error) {
       alert(error);
+      console.log(error);
     }
   }, []);
 
@@ -57,6 +58,7 @@ const Chat = ({ route, navigation }) => {
         .catch((err) => alert(err));
 
       // * guest user
+      //
 
       recieverMsg(msgValue, currentUserId, guestUserId, "")
         .then(() => {})
