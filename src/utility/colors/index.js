@@ -39,6 +39,9 @@ export const DARK_GRAY = "rgb(46, 46, 46)";
 export const DARK_LIME_GREEN = "rgba(0,128,0,0.2)";
 
 export const TRANSPARENT = "transparent";
+export const DARK_GREEN = "rgb(0,100,0)";
+export const PALE_GREEN = "rgb(152,251,152)";
+
 
 /**
  * COLOR GRADIENT PRIMARY

@@ -5,7 +5,7 @@ import { smallDeviceHeight } from "../../utility/constants";
 const getDimensions = () => {
   if (appStyle.deviceHeight > smallDeviceHeight) {
     return {
-      height: 150,
+      height: 130,
       width: 150,
       borderRadius: 50,
       logoFontSize: 40,
@@ -25,13 +25,13 @@ export default StyleSheet.create({
     height: getDimensions().height,
     width: getDimensions().width,
     borderRadius: getDimensions().borderRadius,
-    backgroundColor: color.DARK_GRAY,
+    backgroundColor: color.PALE_GREEN,
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
     fontSize: getDimensions().logoFontSize,
     fontWeight: "bold",
-    color: color.WHITE,
+    color: color.DARK_GREEN,
   },
 });
