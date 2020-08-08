@@ -27,8 +27,9 @@ export const DANGER = "rgb(255,0,0)";
  * All Colors
  */
 export const GREY = "rgb(219, 221, 222)";
-export const WHITE = "rgb(255, 255, 255)";
-export const BLACK = "rgb(0, 0, 0)";
+export const WHITE = "rgb(240,255,255)";
+//export const BLACK = "rgb(0, 0, 0)";
+export const BLACK = "rgb(0,128,128)";
 export const SEMI_TRANSPARENT = "rgba(0,0,0,0.5)";
 export const RED = "rgba(255, 0, 0, 1)";
 export const SILVER = "rgb(192,192,192)";
@@ -49,4 +50,4 @@ export const LIGHT_GREEN = "#99BA93";
 export const GREEN = "rgb(0,120,0)";
 
 export const BORDER_LIGHT_GREYCOLOR = "#EFE9EB";
-
+//export const GREEN_S = "#20b2aa";
