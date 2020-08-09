@@ -110,6 +110,7 @@ const { profileImg, name } = userDetail;
               storageOptions:{
                   skipBackup:true
               }
+              
           };
 
           ImagePicker.showImagePicker(options, (response) => {
@@ -134,15 +135,17 @@ const { profileImg, name } = userDetail;
                     ...userDetail,
                     profileImg: source,
                   });
-                  dispatchLoaderAction({
-                    type: LOADING_STOP,
-                  });
+                  // dispatchLoaderAction({
+                  //   type: LOADING_STOP,
+                  // });
+                  
                 })
-                .catch(() => {
-                  alert(err);
+                .catch((err) => {
+                  
                   dispatchLoaderAction({
                     type: LOADING_STOP,
                   });
+                  alert(err);
                 });
             }
           });

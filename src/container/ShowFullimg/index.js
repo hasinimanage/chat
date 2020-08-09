@@ -2,7 +2,7 @@ import React, { useLayoutEffect, Fragment } from "react";
 import { Image, Text, View, StyleSheet } from "react-native";
 import { globalStyle, color } from "../../utility";
 
-export default ({ route, navigation }) => {
+export default  ({ route, navigation }) => {
   const { params } = route;
   const { name, img, imgText } = params;
   useLayoutEffect(() => {

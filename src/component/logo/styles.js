@@ -12,10 +12,10 @@ const getDimensions = () => {
     };
   } else {
     return {
-      height: 120,
+      height: 100,
       width: 120,
-      borderRadius: 40,
-      logoFontSize: 70,
+      borderRadius: 30,
+      logoFontSize: 20,
     };
   }
 };

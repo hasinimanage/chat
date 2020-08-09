@@ -62,7 +62,7 @@ export default ({navigation}) => {
           console.log(err);
           navigation.replace('Login');
         });
-    }, 4000);
+    }, 5000);
     return () => clearTimeout(redirect);
   }, [navigation]);
   return (
@@ -70,8 +70,24 @@ export default ({navigation}) => {
       style={[globalStyle.containerCentered, {backgroundColor: color.BLACK}]}>
      
       <Logo />
-      <Text style={color.WHITE}>Index-17001765</Text>
-      <Text>M.M.H. Tharushika</Text>
+      <Text></Text>
+      <Text style=
+      {{
+          fontSize:30,
+          padding:30,
+          fontWeight:"bold",
+          color:color.WHITE,
+
+      }}
+      >M.M.H. Tharushika</Text>
+      <Text style={{
+          fontSize:30,
+          padding:30,
+
+          fontWeight:"bold",
+          color:color.WHITE,
+
+      }}>17001765</Text>
 
     </View>
   );
